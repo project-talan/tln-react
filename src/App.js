@@ -1,10 +1,10 @@
 import React from 'react';
-import { /*BrowserRouter as Router,*/ Switch, Route/*, Link, Redirect*/ } from 'react-router-dom';
+import { BrowserRouter, Switch, Route, Link, Redirect } from 'react-router-dom';
 import './App.css';
-import Navbar from './components/Navbar/Navbar';
-import Footer from './components/Footer/Footer';
+import Navbar from './components/Navbar';
+import Footer from './components/Footer';
 
-import Home from './pages/Home/Home';
+import Home from './pages/Home';
 
 document.body.classList.add('container-fluid', 'p-0', 'h-100');
 
@@ -12,11 +12,14 @@ function App() {
   return (
     <div className="App d-flex flex-column h-100">
       <Navbar hostUrl="." titleShort="MVTs - React" titleLong="Minimum Viable Templates - React"/>
-      <Switch>
-        <Route exact path='/' component={Home} />
-        <Route exact path='/home' component={Home} />
-      </Switch>
-      <Footer version="v20.1.0"/>
+      <BrowserRouter>
+        <Switch>
+          <Route exact path='/' component={Home} />
+          <Route exact path='/home' component={Home} />
+          <Redirect to='/'/>
+        </Switch>
+      </BrowserRouter>
+      <Footer version="v20.2.0"/>
     </div>
   );
 }
