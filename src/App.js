@@ -4,7 +4,11 @@ import './App.css';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 
+import requireAuth from './components/AuthComponent'
 import Home from './pages/Home';
+import Login from './pages/Login';
+import Logout from './pages/Logout';
+import Profile from './pages/Profile';
 
 document.body.classList.add('container-fluid', 'p-0', 'h-100');
 
@@ -16,10 +20,13 @@ function App() {
         <Switch>
           <Route exact path='/' component={Home} />
           <Route exact path='/home' component={Home} />
+          <Route exact path='/login' component={Login} />
+          <Route exact path='/logout' component={Logout} />
+          <Route exact path='/profile' component={requireAuth(Profile)} />
           <Redirect to='/'/>
         </Switch>
       </BrowserRouter>
-      <Footer version="v20.2.0"/>
+      <Footer version="v20.1.1"/>
     </div>
   );
 }
