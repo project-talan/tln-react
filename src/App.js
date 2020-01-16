@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Switch, Route, Link, Redirect } from 'react-router-dom';
+import { BrowserRouter, Switch, Route, /*Link,*/ Redirect } from 'react-router-dom';
 import './App.css';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
@@ -13,6 +13,7 @@ import Profile from './pages/Profile';
 document.body.classList.add('container-fluid', 'p-0', 'h-100');
 
 function App() {
+  console.log(process.env);
   return (
     <div className="App d-flex flex-column h-100">
       <Navbar hostUrl="." titleShort="MVTs - React" titleLong="Minimum Viable Templates - React"/>
