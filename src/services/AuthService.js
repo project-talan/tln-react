@@ -1,16 +1,58 @@
+import getConfigService from './ConfigService'
+
 class AuthService {
   constructor() {
+    this.configService = getConfigService();
   }
 
-  login(data) {
+  isAuthenticated() {
+    return !!localStorage.getItem(this.configService.getAuthItemName());
+  }
+
+  login(login, password) {
+    return fetch(
+      this.configService.getAuthApiUrl('api', 'v1', 'contacts'),
+      {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify({ login, password })
+      }
+    )
+    .then(this.handleResponse)
+    .then(contact => {
+      localStorage.setItem(this.configService.getAuthItemName(), JSON.stringify(contact));
+      return contact;
+    })
+    .catch(error => {
+      return Promise.reject(`Server communication error`);
+    });
+  }
+
+  handleResponse(response) {
+    return response.text().then(text => { 
+      const data = text && JSON.parse(text);
+      if (!response.ok) {
+        if (response.status === 401) {
+          this.logout();
+        }
+        const error = (data && data.message) || response.statusText;
+        return Promise.reject(error);
+      }
+
+      return data;
+    });
   }
 
   logout() {
+    localStorage.removeItem(this.configService.getAuthItemName());
   }
 
 }
 
+let service = null;
 export default function getAuthService() {
-  let service = null;
+  if (service === null) {
+    service = new AuthService();
+  }
+  return service;
 }
-export default class Home extends React.Component {

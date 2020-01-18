@@ -2,7 +2,7 @@ import React  from 'react';
 import { withRouter } from 'react-router';
 import * as Cookie from "js-cookie";
 
-export default function requireAuth(Component) {
+export default function requireAuth(Component, authService) {
   class AuthenticatedComponent extends React.Component {
     constructor(props) {
       super(props);
@@ -18,13 +18,13 @@ export default function requireAuth(Component) {
     checkAuth() {
       const location = this.props.location;
       const redirect = location.pathname + location.search;
-      if (!Cookie.get('auth')) {
+      if (!authService.isAuthenticated()) {
         this.props.history.push(`/login?redirect=${redirect}`);
       }
     }
 
     render() {
-      return Cookie.get('auth') ? <Component { ...this.props } /> : null;
+      return authService.isAuthenticated() ? <Component { ...this.props } /> : null;
     }
   }
 

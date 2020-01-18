@@ -3,6 +3,14 @@ import './Logout.css';
 import { Link } from 'react-router-dom';
 
 export default class Home extends React.Component {
+
+  componentDidMount() {
+    this.props.authService.logout();
+  }
+
+  componentWillUnmount() {
+  }
+
   render() {
     return (
       <div className="jumbotron bg-light border-0 rounded-0">
