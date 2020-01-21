@@ -4,7 +4,7 @@ class ConfigService {
   // }
 
   getAuthApiUrl(...args) {
-    return false?'http://httpstat.us/200':[process.env.REACT_APP_AUTH_API_URL].concat(args).join('/');
+    return true?'http://httpstat.us/200':[process.env.REACT_APP_AUTH_API_URL].concat(args).join('/');
   }
 
   getAuthItemName() {

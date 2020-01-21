@@ -10,6 +10,9 @@ class AuthService {
   }
 
   login(login, password) {
+    if (!((login === 'admin@admin.io') && (password === 'admin'))) {
+      return Promise.reject(`Invalid login name or/and password`);
+    }
     return fetch(
       this.configService.getAuthApiUrl('api', 'v1', 'contacts'),
       {
