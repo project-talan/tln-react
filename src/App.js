@@ -4,7 +4,7 @@ import './App.css';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 
-import getAuthService from './services/AuthService'
+import { createConfigService, createConnectionService, createAuthService } from './services';
 
 import requireAuth from './components/AuthComponent'
 import Home from './pages/Home';
@@ -15,7 +15,9 @@ import Profile from './pages/Profile';
 document.body.classList.add('container-fluid', 'p-0', 'h-100');
 
 function App() {
-  const authService = getAuthService();
+  const configService = createConfigService();
+  const connectionService = createConnectionService(configService);
+  const authService = createAuthService(configService, connectionService);
   return (
     <div className="App d-flex flex-column h-100">
       <Navbar hostUrl="." titleShort="MVTs - React" titleLong="Minimum Viable Templates - React"/>

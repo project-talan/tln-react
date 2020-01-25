@@ -13,10 +13,6 @@ class ConfigService {
 
 }
 
-let service = null;
-export default function getConfigService() {
-  if (service === null) {
-    service = new ConfigService();
-  }
-  return service;
+export default function createConfigService() {
+  return new ConfigService();
 }

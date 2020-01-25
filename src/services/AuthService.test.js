@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import getAuthService from './AuthService';
+import createAuthService from './AuthService';
 
 it('initiate without crashing', () => {
-  const service = getAuthService();
+  const service = createAuthService(null, null);
 });

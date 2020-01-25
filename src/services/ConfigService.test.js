@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import getConfigService from './ConfigService';
+import createConfigService from './ConfigService';
 
 it('initiate without crashing', () => {
-  const service = getConfigService();
+  const service = createConfigService();
 });

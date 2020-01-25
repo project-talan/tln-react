@@ -1,8 +1,8 @@
-import getConfigService from './ConfigService'
 
 class AuthService {
-  constructor() {
-    this.configService = getConfigService();
+  constructor(configService, connectionService) {
+    this.configService = configService;
+    this.connectionService = connectionService;
   }
 
   isAuthenticated() {
@@ -52,10 +52,6 @@ class AuthService {
 
 }
 
-let service = null;
-export default function getAuthService() {
-  if (service === null) {
-    service = new AuthService();
-  }
-  return service;
+export default function createAuthService(configService, connectionService) {
+  return new AuthService(configService, connectionService);
 }
