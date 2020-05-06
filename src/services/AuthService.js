@@ -13,36 +13,20 @@ class AuthService {
     if (!((login === 'admin@admin.io') && (password === 'admin'))) {
       return Promise.reject(`Invalid login name or/and password`);
     }
-    return fetch(
-      this.configService.getAuthApiUrl('api', 'v1', 'contacts'),
-      {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-        body: JSON.stringify({ login, password })
-      }
-    )
+    return this.connectionService.post(
+      ['contacts'],
+      { login: login, password: password })
     .then(this.handleResponse)
     .then(contact => {
       localStorage.setItem(this.configService.getAuthItemName(), JSON.stringify(contact));
       return contact;
     })
     .catch(error => {
-      return Promise.reject(`Server communication error`);
-    });
-  }
-
-  handleResponse(response) {
-    return response.text().then(text => { 
-      const data = text && JSON.parse(text);
-      if (!response.ok) {
-        if (response.status === 401) {
-          this.logout();
-        }
-        const error = (data && data.message) || response.statusText;
-        return Promise.reject(error);
+      if (error === 401){
+        this.logout();
+        return Promise.reject('Unauthorized');
       }
-
-      return data;
+      return Promise.reject(error);
     });
   }
 
