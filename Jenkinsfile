@@ -9,7 +9,7 @@ properties([
       //'TLN_COMPONENT_PARAM_LSTN': '',
       //'TLN_COMPONENT_PARAM_PORT': '',
       //'TLN_COMPONENT_PARAM_PORTS': '',
-      //'TLN_SHARED_COMPONENTS_HOME': '',
+      //'TLN_LOCAL_REPO': '',
 
       'TLN_GITHUB_ACCESS_TOKEN': "${GITHUB_ACCESS_TOKEN}",
 
@@ -32,7 +32,7 @@ node {
     helper.collectBuildInfo(scmVars, params)
     //
     // Create config for detached build
-    //sh "echo '{\"shared-dest\": \"${TLN_SHARED_COMPONENTS_HOME}\"}' > '.tlnclirc'"
+    //sh "echo '{\"detach\": true}' > '.tlnrc'"
 
     //
     // Get information from project's config
@@ -50,11 +50,11 @@ node {
     }
 
     stage('Build') {
-      sh 'tln prereq:init:build --shared-dest /tmp/tln'
+      sh 'tln prereq:init:build'
     }
 
     stage('Unit tests') {
-      sh 'tln test --shared-dest /tmp/tln'
+      sh 'tln test'
     }
 
     stage('SonarQube analysis') {
