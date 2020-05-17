@@ -54,7 +54,7 @@ node {
     }
 
     stage('Unit tests') {
-      sh 'tln test'
+      sh 'tln test --shared-dest /tmp/tln'
     }
 
     stage('SonarQube analysis') {
