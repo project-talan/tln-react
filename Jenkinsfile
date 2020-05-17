@@ -50,7 +50,7 @@ node {
     }
 
     stage('Build') {
-      sh 'tln prereq:init:build -vvv'
+      sh 'tln prereq:init:build --shared-dest /tmp/tln'
     }
 
     stage('Unit tests') {
