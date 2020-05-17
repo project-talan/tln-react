@@ -50,7 +50,7 @@ node {
     }
 
     stage('Build') {
-      sh 'tln prereq:init:build'
+      sh 'tln prereq:init:build -vvv'
     }
 
     stage('Unit tests') {
