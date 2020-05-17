@@ -32,7 +32,7 @@ node {
     helper.collectBuildInfo(scmVars, params)
     //
     // Create config for detached build
-    //sh "echo '{\"detach\": true}' > '.tlnrc'"
+    sh "echo '{\"detach\": true}' > '.tlnrc'"
 
     //
     // Get information from project's config
