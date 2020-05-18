@@ -46,7 +46,7 @@ node {
   try {
 
     stage('Setup build environment') {
-      //sh 'tln install --depends'
+      sh 'tln install --depends'
     }
 
     stage('Build') {
