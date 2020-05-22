@@ -1,4 +1,4 @@
-FROM nginx:1.17.6-alpine
+FROM nginx:1.17.10-alpine
 
 COPY ./target/ /etc/nginx/
 COPY ./build/ /usr/share/nginx/html/
