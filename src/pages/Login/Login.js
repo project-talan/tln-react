@@ -63,7 +63,7 @@ export default class Login extends React.Component {
       <div className="jumbotron bg-light border-0 rounded-0">
         <div className="container-fluid">
           <div className="row text-left">
-            <div className="offset-sm-4 col-sm-4">
+            <div className="offset-md-4 col-md-4">
               {this.state.error && <div className="alert alert-danger text-center" role="alert">{this.state.error}</div>}
               <form onSubmit={this.handleSubmit}>
                 <div className="form-group">
