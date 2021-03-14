@@ -31,7 +31,7 @@ function App() {
           <Redirect to='/'/>
         </Switch>
       </BrowserRouter>
-      <Footer version="v21.3.0"/>
+      <Footer version="v21.3.1"/>
     </div>
   );
 }
