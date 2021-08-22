@@ -64,8 +64,7 @@ node {
     stage('Delivery') {
       if (helper.pullRequest){
       } else {
-        // create docker, push artifacts to the Harbor/Nexus/etc.
-        // archiveArtifacts artifacts: 'path/2/artifact'
+        sh 'tln docker-build -e TLN_UID ${TLN_COMPONENT_UID} -e TLN_VERSION ${TLN_COMPONENT_VERSION}'
       }
     }
 
