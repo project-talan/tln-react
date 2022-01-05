@@ -40,7 +40,7 @@ export default class Login extends React.Component {
   handleSubmit(event) {
     if (!this.state.loading) {
       this.setState({ loading: true, error: null});
-      const { login, password } = this.state
+      const { login, password } = this.state;
       this.props.authService.login(login, password)
       .then(res => {
         this.setState({ loading: false});
