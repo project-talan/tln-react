@@ -9,7 +9,7 @@
     "js-cookie": "^2.2.1",
     "query-string": "^6.10.1",
     "react": "^16.14.0",
-    "react-bootstrap": "^1.0.0-beta.16",
+    "react-bootstrap": "^1.6.4",
     "react-dom": "^16.14.0",
     "react-router-dom": "^5.3.0",
     "react-scripts": "^4.0.3"
